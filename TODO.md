@@ -1,7 +1,7 @@
 # TODO
 
 Overview
-- [ ] [Terraform](#terraform)
+- [/] [Terraform](#terraform)
 - [ ] [Static Assets](#static-assets)
 - [ ] [WAR](#war)
 - [ ] [Documentation](#documentation)
@@ -16,11 +16,15 @@ Overview
 * Production setup for limited release
 
 ### Plan
-* Create terraform project using workspaces and separate (training & production) tfvars files
+* Terraform project using workspaces and separate (training & production) tfvars files
 * Create and document setting up terraform for gcp
 * Create container for running terraform
   * Avoid mismatched dependencies
   * Reproducability
+
+### Steps
+- [x] Setup gcp project
+- [ ] Setup test and production variables
 
 ## Static Assets
 
