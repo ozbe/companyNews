@@ -54,6 +54,7 @@ Overview
 
 ### Outstanding questions
 1. How do I test w/o a war file?
+  - Found one from [A Sample Java Web Application – War file to Deploy and Test](https://www.middlewareinventory.com/blog/sample-web-application-war-file-download/)
 
 ### Inputs
 * A .war file with the dynamic parts of the application
