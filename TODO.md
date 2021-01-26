@@ -29,6 +29,9 @@ Overview
 
 ## Static Assets
 
+### Outstanding questions
+1. Does the cache work in a desirable way (ex: will updates be delivered to callers)?
+
 ### Inputs
 * A .zip file with the image and stylesheet used for the application
 
@@ -42,10 +45,10 @@ Overview
   * Why? - While not `a web server`, this does solve the problem of serving the assets, without the overhead of having to manage a web server
 
 ### Steps
-* Create Service Account with write permissions to CDN bucket
-* Create CDN GCS bucket
-* Create Load Balancer (CDN)
-* Create upload script
+- [x] Create CDN GCS bucket
+- [x] Create Load Balancer (CDN)
+- [ ] Create upload script
+- [ ] Create Service Account with write permissions to CDN bucket
 
 ## WAR
 
