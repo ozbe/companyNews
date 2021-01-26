@@ -39,7 +39,7 @@ Overview
 ### Steps
 * Create Service Account with write permissions to CDN bucket
 * Create CDN GCS bucket
-* Create Load Balancer (C)
+* Create Load Balancer (CDN)
 * Create upload script
 
 ## WAR
@@ -55,19 +55,37 @@ Overview
 * The app persists data to a file via prevayler
 
 ### Plan
-* Run WAR file in tomcat
+* Run WAR file in tomcat helm
+  * Why - 
 * Run tomcat on GKE
-* Store WAR in ~GCS~ Filestore
-* Persist prevaylor in Filestore
+  * Why - 
+* Store WAR on GCE persistent volume
+  * Why - ease, cost can deploy via kubectl
+* Persist prevaylor on GCE persistent volume
+  * Why 
+    * Pods are ephemeral
+    * Persists prevaylor file between pod restarts
+* Run GKE with one one node
+  * Why - limited release, (personal) cost, prevaylor volume can only be written to by one pod
+* Runbook?
 
 ### Alternatives
-* [Cloud Storage FUSE](https://cloud.google.com/storage/docs/gcs-fuse)
+* [Cloud Storage FUSE](https://cloud.google.com/storage/docs/gcs-fuse) for WAR
   * Con: Requires `privileged` https://github.com/maciekrb/gcs-fuse-sample
+* GCE persistent disk for prevayler data
+  * Speed, cost
+* Package WAR in Docker Image
+
+### References
+- [Storage options](https://cloud.google.com/compute/docs/disks/)
 
 ### Steps
 * Create GKE
-* Create FileStore resource
 * Deploy tomact helm to GKE
+  * Provide war and prevaylor path in config
+  * Enable ingress
+  * Persistent volume
+* Create upload script
 
 ## Documentation
 **TODO***
@@ -98,9 +116,17 @@ Overview
 * No HTTPS
 
 ### Improvements
+* Store terraform state in GCS or use TFE
 * Move from prevayler to data storage option appropriate for companyNews use case
   * can still support prevayler localy for development by adding an interface to abstract the data storage
   * **TODO** provide decision tree for choosing storage option
+  * world wide and sub second response (spanner) or perhaps use cloud sql with memory store
+  * mention leader election alternative?
 * Containerize war with tomcat, publish to GCR, and deploy helm specific for companyNews
+  * proper health check
+  * following deploys
+  * versions 
 * Fix non-atomic, Deploy assets to different folders (paths) in a bucket and point to said folder from the newly released 
 * Support HTTPS
+* GKE multi-zone
+* Scaling pods
