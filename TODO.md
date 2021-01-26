@@ -1,7 +1,7 @@
 # TODO
 
 Overview
-- [ ] [Terraform](#terraform)
+- [/] [Terraform](#terraform)
 - [ ] [Static Assets](#static-assets)
 - [ ] [WAR](#war)
 - [ ] [Documentation](#documentation)
@@ -16,11 +16,16 @@ Overview
 * Production setup for limited release
 
 ### Plan
-* Create terraform project using workspaces and separate (training & production) tfvars files
+* Terraform project using workspaces and separate (training & production) tfvars files
 * Create and document setting up terraform for gcp
 * Create container for running terraform
   * Avoid mismatched dependencies
   * Reproducability
+
+### Steps
+- [x] Setup gcp project (1)
+- [x] Setup test (2)
+- [ ] Setup production variables
 
 ## Static Assets
 
@@ -117,6 +122,7 @@ Overview
 
 ### Improvements
 * Store terraform state in GCS or use TFE
+* Terraform pre commit fmt
 * Move from prevayler to data storage option appropriate for companyNews use case
   * can still support prevayler localy for development by adding an interface to abstract the data storage
   * **TODO** provide decision tree for choosing storage option
