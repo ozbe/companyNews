@@ -1,6 +1,9 @@
 # GCP Service Account (SA) Key
 /sa-key.json
 
+# Terraform Plans
+/*_plan
+
 #########
 # Standard terraform .gitignore
 # Source https://github.com/github/gitignore/blob/master/Terraform.gitignore

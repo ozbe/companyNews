@@ -24,7 +24,8 @@ Overview
 
 ### Steps
 - [x] Setup gcp project
-- [ ] Setup test and production variables
+- [x] Setup test
+- [ ] Setup production variables
 
 ## Static Assets
 
