@@ -8,7 +8,10 @@
   * Create or choose existing Service Account (SA) with `Project Owner` role
     * Mine is `terraform@ozbe-companynews.iam.gserviceaccount.com`
   * Create a SA key (json) and save the key in the project directory as `sa-key.json` (don't worry the filename is in the .gitignore)
+* **TODO** enable [Cloud Resource Manager API](https://console.developers.google.com/apis/api/cloudresourcemanager.googleapis.com/overview?project=524336931530&pli=1)
+* **TODO** warn about google services being update in GCP Project 
 * **TODO** how to setup `tf.vars`
+* **IDEA** Support using local gcloud credentials for ease of setup
 
 ## Development
 
@@ -59,6 +62,18 @@ $ terraform apply "<training|production>_plan""
 ```
 $ terraform apply "training_plan"
 ```
+
+## Destroy
+After [selecting](#select) your workspace
+```
+$ terraform destroy -var-file=<training|production>.tfvars
+```
+
+### Training example
+```
+$ terraform destroy -var-file=training.tfvars
+```
+
 
 ## References
 * https://github.com/hashicorp/terraform/blob/master/Dockerfile

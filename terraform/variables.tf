@@ -9,3 +9,8 @@ variable "gcp_region" {
   type    = string
   default = "australia-southeast1-b"
 }
+
+variable "env" {
+  type = string
+  description = "Environment"
+}
