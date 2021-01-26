@@ -23,8 +23,8 @@ Overview
   * Reproducability
 
 ### Steps
-- [x] Setup gcp project
-- [x] Setup test
+- [x] Setup gcp project (1)
+- [x] Setup test (2)
 - [ ] Setup production variables
 
 ## Static Assets
