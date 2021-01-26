@@ -122,6 +122,7 @@ Overview
 
 ### Improvements
 * Store terraform state in GCS or use TFE
+* Terraform pre commit fmt
 * Move from prevayler to data storage option appropriate for companyNews use case
   * can still support prevayler localy for development by adding an interface to abstract the data storage
   * **TODO** provide decision tree for choosing storage option
