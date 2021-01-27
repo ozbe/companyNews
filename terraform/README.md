@@ -20,7 +20,7 @@ $ docker build -t tf .
 $ docker run \
   --rm \
   -it \
-  -v `pwd`/terraform:/terraform \
+  -v `pwd`:/terraform \
   tf
 ```
 
