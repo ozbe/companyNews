@@ -13,9 +13,9 @@ Progress and planning can be found in [TODO.md](/TODO.md)
 
 ## Copy Assets
 
-### Static Assets
+Copy assets, after deploying terraform environments and setting up `kubectl`.
 
-After deploying terraform environments
+### Static Assets
 
 ```
 $ ./scripts/upload_static_assets.sh <training|production> <PATH_TO_ASSETS_ZIP>
@@ -24,7 +24,7 @@ $ ./scripts/upload_static_assets.sh <training|production> <PATH_TO_ASSETS_ZIP>
 ### War
 
 ```
-company-news-tomcat-897f447d-n9zm9
+$ ./scripts/upload_war.sh <training|production> <PATH_TO_WAR>
 ```
 
 ## View
