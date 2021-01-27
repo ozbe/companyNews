@@ -3,13 +3,23 @@
 Progress and planning can be found in [TODO.md](/TODO.md)
 
 ## Steps
-1. [Terraform Setup](/terraform/README.md)
+1. [Terraform Setup](/#terraform)
+2. [Kubernetes](#kubernetes)
 2. [Copy assets](#copy-assets)
+3. [View assets](#view-assets)
 
-## Kubernetes
+### Terraform
 
-**TODO** requires `gcloud config set compute/zone australia-southeast1-b`
-`$ gcloud container clusters get-credentials $(terraform output gke_name)`
+[Terraform Setup](/terraform/README.md)
+
+### Kubernetes
+
+```
+$ terraform -chdir=./terraform workspace select <training|production>
+$ GKE_NAME=$(terraform -chdir=./terraform output gke_name)
+$ REGION=$(terraform -chdir=./terraform output region)
+$ gcloud --region=$REGION container clusters get-credentials $GKE_NAME
+```
 
 ## Copy Assets
 
