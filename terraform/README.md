@@ -5,20 +5,24 @@
 * Setup Google Cloud Project
 * `glcoud` configured to use an account with `Project Owner` permissions to _the_ GCP Project (`project_id`)
 
-## Development
+## Setup and Deploy
+1. [terraform init](#terraform-init)
+1. [Environment tfvars](#environment-tfvars)
+2. [Workspaces](#workspaces)
+3. [Plan](#plan)
+4. [Deploy](#deploy)
+
+## Terraform init
 
 ```
-$ docker build -t tf .
-$ docker run \
-  --rm \
-  -it \
-  -v `pwd`:/terraform \
-  tf
+$ terraform init
 ```
 
 ## Environment tfvars
 
-The steps provided throughout documentation refer to using `training.tfvars` or `production.tfvars`. You will need to create each file. Thankfully `variables.tf` has reasonable defaults, so you only need to set the `project_id` and `env`. 
+The steps provided throughout documentation refer to using `training.tfvars` or `production.tfvars`. You will need to create each file. 
+
+Thankfully `variables.tf` has reasonable defaults, so you only need to set the `project_id` and `env`:
 * `project_id` should be the GCP project you have for this project.
 * `env` should be `training` or `production`, but can be _any_ value (assuming it meets the naming limitations in the resources it is used with). 
 
@@ -26,11 +30,11 @@ The steps provided throughout documentation refer to using `training.tfvars` or 
 
 ```
 # training.tfvars
-project_id   = "ozbe-companynews-training"
+project_id   = "ozbe-companynews"
 env          = "training"
 ```
  
-Now that you've seen an example, go make `training.tfvars` or `production.tfvars`. 
+Now that you've seen an example, go make `training.tfvars` and/or `production.tfvars`. 
 
 ## Workspaces
 
@@ -38,17 +42,28 @@ Terraform Workspaces are used to isolate state. There is a workspace for `traini
 
 ### Setup
 ```
+$ terraform workspace new <training|production>
+```
+
+### Training Example
+```
 $ terraform workspace new training
-$ terraform workspace new production
 ```
 
 ### Select
+You use select to change workspaces. When you create a new workspace it is automatcially selected. If you're following along, you shouldn't have to run the command, but you may need it later.
+
 ```
 $ terraform workspace select <training|production>
 ```
 
+### Training Example
+```
+$ terraform workspace select training
+```
+
 ## Plan
-After [selecting](#select) your workspace
+After [selecting](#select) your workspace, plan
 
 ```
 $ terraform plan -out=<training|production>_plan -var-file=<training|production>.tfvars
@@ -80,6 +95,17 @@ $ terraform destroy -var-file=<training|production>.tfvars
 ### Training example
 ```
 $ terraform destroy -var-file=training.tfvars
+```
+
+## Development
+
+```
+$ docker build -t tf .
+$ docker run \
+  --rm \
+  -it \
+  -v `pwd`:/terraform \
+  tf
 ```
 
 ## References

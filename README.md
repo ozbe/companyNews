@@ -24,6 +24,9 @@ You may already a project and SA account already, but these directions will assu
 # Create project
 $ gcloud projects create <PROJECT_ID>
 
+# Enable billing (Get ACCOUNT_ID with `gcloud alpha billing accounts list`)
+$ gcloud beta billing projects link <PROJECT_ID> --billing-account=<ACCOUNT_ID>
+
 # Set project
 $ gcloud config set project <PROJECT_ID>
 
@@ -31,35 +34,75 @@ $ gcloud config set project <PROJECT_ID>
 gcloud services enable cloudresourcemanager.googleapis.com
 ```
 
+### Training Example
+
+```
+# Create project
+$ gcloud projects create ozbe-cn-training
+
+# Enable billing (Get ACCOUNT_ID with `gcloud alpha billing accounts list`)
+$ gcloud alpha billing projects link ozbe-cn-training --billing-account=XXXXXXX
+
+# Set project
+$ gcloud config set project ozbe-cn-training
+
+# Enable Cloud Resource Manager API
+$ gcloud services enable cloudresourcemanager.googleapis.com
+```
+
 ### Create Terraform Service Account (SA)
 
 ```
 # Create SA
-$ gcloud iam service-accounts create <SA_NAME>  --display-name "Terraform Account"
+$ gcloud iam service-accounts create <SA_NAME> --display-name "Terraform Account"
 
 # Assign SA owner role
-$ gcloud projects add-iam-policy-binding <PROJECT_ID> --member "<SA_NAME:<PROJECT_ID>@someproject.iam.gserviceaccount.com" --role "roles/owner"
+$ gcloud projects add-iam-policy-binding <PROJECT_ID> --member "serviceAccount:<SA_NAME>@<PROJECT_ID>.iam.gserviceaccount.com" --role "roles/owner"
 
 # Create and download SA key
-$ gcloud iam service-accounts keys create <SA_KEY>.json --iam-account <SA_NAME>m@<PROJECT_ID>.iam.gserviceaccount.com
+$ gcloud iam service-accounts keys create <SA_KEY>.json --iam-account <SA_NAME>@<PROJECT_ID>.iam.gserviceaccount.com
 
 # Activate service account 
 $ gcloud auth activate-service-account --project=<PROJECT_ID> --key-file=<SA_KEY>.json
 
 # Set gcloud account to SA
-$ gcloud config set account gcpcmdline@someproject.iam.gserviceaccount.com
+$ gcloud config set account <SA_NAME>@<PROJECT_ID>.iam.gserviceaccount.com
 
-# Login to SA
-$ gcloud auth application-default login --no-launch-browser
+# Login
+$ gcloud auth application-default login
+```
+
+### Training Example
+
+```
+# Create SA
+$ gcloud iam service-accounts create terraform --display-name "Terraform Account"
+
+# Assign SA owner role
+$ gcloud projects add-iam-policy-binding ozbe-cn-training --member "serviceAccount:terraform@ozbe-cn-training.iam.gserviceaccount.com" --role "roles/owner"
+
+# Create and download SA key
+$ gcloud iam service-accounts keys create sa-key.json --iam-account terraform@ozbe-cn-training.iam.gserviceaccount.com
+
+# Activate service account 
+$ gcloud auth activate-service-account --project=ozbe-cn-training --key-file=sa-key.json
+
+# Set gcloud account to SA
+$ gcloud config set account terraform@ozbe-cn-training.iam.gserviceaccount.com
+
+# Login
+$ gcloud auth application-default login
 ```
 
 ## Terraform
 
 Terraform is used to stand up the GCP Project's infrastructure.
 
-Follow the steps in [Terraform Setup](/terraform/README.md) to setup the `training` envrionment. 
+Follow the setup and deploy steps in [Terraform Setup](/terraform/README.md#setup-and-deploy) to setup the `training` envrionment. 
 
 We will talk about [production](#production) later.
+
+Don't forget to `cd ./terraform` from the project roor for the terraform setup!
 
 ## kubectl
 
@@ -117,21 +160,67 @@ $ ./scripts/upload_war.sh training ./tests/assets/war/SampleWebApp.war
 ### View Static Assets
 
 ```
-CDN_IP=$(terraform -chdir=terraform output company_news_cdn_ip | tr -d '"')
-$ open "http://$CDN_IP/index.html"
+$ ./scripts/view_static_assets.sh
+```
 
 ### View WAR
+
 ```
-$ SVC_IP=$(kubectl get svc company-news-tomcat -o jsonpath="{.status.loadBalancer.ingress[0].ip}")
-$ open "http://$SVC_IP/SampleWebApp/"
+$ ./scripts/view_war.sh
 ```
 
 ## Production
-**TODO**
+You have a one of two choices for testing Production environment. You can follow all of the directions starting from [GCP Project](#gcp-project), where you setup a new GCP project, *or* you can go through the [Clean up](#clean-up) and then start at the [Terraform](#terraform) setup.
 
 ## Clean up
-**TODO**
-terraform destroy
-remove service account
-remove kubectl context
-delete project
+Now to undo everything we did.
+
+### Terraform Destroy
+
+See the [terraform/README.md](/terraform/README.md#destroy) for info on how to destroy the resources.
+
+### Remove kubectl context
+
+```
+$ kubectl config delete-context <KUBE_CONTEXT>
+```
+
+### Remove service account
+
+```
+# List accounts
+$ gcloud auth list
+
+# Switch account to one other than SA
+$ gcloud config set account <ACCOUNT>
+
+# Revoke SA account
+$ gcloud revoke <SA_ACCOUNT>
+```
+
+### Training Example
+
+```
+# List accounts
+$ gcloud auth list
+
+# Switch account to one other than SA
+$ gcloud config set account XXXXX@gmail.com 
+
+# Revoke SA account
+$ gcloud revoke terraform@ozbe-cn-training.iam.gserviceaccount.com
+```
+
+### Delete project
+
+```
+gcloud projects delete <PROJECT_ID>
+```
+
+```
+gcloud projects delete ozbe-cn-training
+```
+
+### Treat yourself
+
+You're done. Take a break. Treat yourself.

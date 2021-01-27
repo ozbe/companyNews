@@ -103,21 +103,31 @@ Overview
 **TODO***
 
 ### Requirements
-* The ability for us to build your environments, in scripts and/or documentation 
-* Links to any images needed to build your environments. 
-* A plan for scaling the public release including hardware and software implications. This can include documents, diagrams and/or configuration scripts. If you see any issues scaling this application tell us about it and suggestions, you have for resolving the issues. 
+- [/] The ability for us to build your environments, in scripts and/or documentation 
+- [x] Links to any images needed to build your environments. - None
+- [/] A plan for scaling the public release including hardware and software implications. This can include documents, diagrams and/or configuration scripts. If you see any issues scaling this application tell us about it and suggestions, you have for resolving the issues. 
 * A paper based description on how monitoring would be implemented
+  * Cloud Monitoring and Alerting
+  * Load balancers
+  * CPU and memory for web-server
+  * Uptime check for both load balancers
 * A narrative of the approach taken. 
   * What principles did you apply?
+    * Get a solution out, while taking minimal assumptions, to enable the team to start validating their product. With a working solution, work with the developers to get more insights into their requirements and share recommendations with them.
   * Explanation of the decisions you made and why.
+    * Many explanations are inline with the TODO.md and in the source
   * What end state do you envision (if you run out of time to implement)?
+
   * Why were certain tools selected?
+    * Mentioned inline the `TODO.md` and in the source
   * Why you configured the tools as you did? 
+    * **TODO** GKE
   * What is your recommendation for future work if time allows? 
+    * 
 
 ### Plan
-* Put setup and run in README.md
-* Put development in separate doc
+- [/] Put setup and run in README.md
+- [/] Put development in separate doc
 
 ### Shortcomings with solution
 * Deployment of assets are not atomic
