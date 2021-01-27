@@ -10,17 +10,13 @@ resource "google_container_cluster" "gke" {
   remove_default_node_pool = true
   initial_node_count       = 1
 
-  network    = google_compute_network.network.name
-  subnetwork = google_compute_subnetwork.subnet.name
+  network    = var.network
+  subnetwork = var.subnetwork
 
   ip_allocation_policy {
-    cluster_secondary_range_name  = google_compute_subnetwork.subnet.secondary_ip_range[0].range_name
-    services_secondary_range_name = google_compute_subnetwork.subnet.secondary_ip_range[0].range_name
+    cluster_secondary_range_name  = var.pods_secondary_range_name
+    services_secondary_range_name = var.services_secondary_range_name
   }
-
-  depends_on = [
-    google_project_service.services
-  ]
 }
 
 resource "google_container_node_pool" "gke_primary" {

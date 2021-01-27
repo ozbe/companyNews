@@ -15,10 +15,10 @@ output "env" {
 }
 
 output "gke_name" {
-  value = google_container_cluster.gke.name
+  value = module.gke.cluster_name
   description = "GKE cluster name"
 }
 
 output "company_news_public_bucket_name" {
-  value = module.company_news.bucket_name
+  value = module.company_news.public_bucket_name
 }
