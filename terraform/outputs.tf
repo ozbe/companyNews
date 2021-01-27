@@ -6,8 +6,8 @@ output "region" {
   value = var.region
 }
 
-output "zones" {
-  value = var.zones
+output "zone" {
+  value = var.zone
 }
 
 output "env" {

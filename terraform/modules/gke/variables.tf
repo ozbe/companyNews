@@ -6,12 +6,13 @@ variable env {
   type = string
 }
 
-variable zones {
-  type = list(string)
+variable zone {
+  type = string
 }
 
 variable gke_num_nodes {
   type = number
+  description = "Number of primary nodes "
 }
 
 variable network {

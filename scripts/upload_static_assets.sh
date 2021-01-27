@@ -14,16 +14,16 @@
 set -e
 
 # Store current terraform workspace
-PREV_WS=$(terraform -chdir=../terraform workspace show)
+PREV_WS=$(terraform -chdir=terraform workspace show)
 
 # Change terraform workspace
-terraform -chdir=../terraform workspace select $1
+terraform -chdir=terraform workspace select $1
 
 # Get bucket name from terraform
-BUCKET=$(terraform -chdir=../terraform output company_news_public_bucket_name)
+BUCKET=$(terraform -chdir=terraform output company_news_public_bucket_name | tr -d '"')
 
 # Restore terraform workspace
-terraform -chdir=../terraform workspace select $PREV_WS
+terraform -chdir=terraform workspace select $PREV_WS
 
 # Unzip to tmp
 TMP_PATH=/tmp/upload_assets
@@ -32,3 +32,5 @@ unzip -o -d $TMP_PATH $2
 
 # Sync tmp to bucket, removing any old files
 gsutil rsync -d -r $TMP_PATH gs://$BUCKET
+
+echo 'Success!'

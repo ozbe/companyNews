@@ -1,10 +1,10 @@
 # TODO
 
 Overview
-- [x] [Terraform](#terraform)
-- [X] [Static Assets](#static-assets)
-- [ ] [WAR](#war)
-- [ ] [Documentation](#documentation)
+- [/] [Terraform](#terraform)
+- [/] [Static Assets](#static-assets)
+- [/] [WAR](#war)
+- [/] [Documentation](#documentation)
 
 ## Terraform
 **TODO**
@@ -47,14 +47,13 @@ Overview
 ### Steps
 - [x] Create CDN GCS bucket
 - [x] Create Load Balancer (CDN)
-- [ ] Create upload script
-- [ ] Create Service Account with write permissions to CDN bucket
+- [x] Create upload script
+- [ ] ~~Create Service Account with write permissions to CDN bucket~~ move to improvements
 
 ## WAR
 
 ### Outstanding questions
-1. How do I test w/o a war file?
-  - Found one from [A Sample Java Web Application – War file to Deploy and Test](https://www.middlewareinventory.com/blog/sample-web-application-war-file-download/)
+*NONE*
 
 ### Inputs
 * A .war file with the dynamic parts of the application
@@ -90,11 +89,15 @@ Overview
 
 ### Steps
 - [x] Create GKE
-- [ ] Deploy tomact helm to GKE
-  * Provide war and prevaylor path in config
-  * Enable ingress
-  * Persistent volume
-- [ ] Create upload script
+- [x] Deploy tomact helm to GKE
+  * ~~Provide war and prevaylor path in config~~
+  * ~~Enable ingress~~ used a public cluster
+  * Persistent volume 
+- [x] Create upload script
+
+### Questions
+1. ~~How do I test w/o a war file?~~
+  - Found one from [A Sample Java Web Application – War file to Deploy and Test](https://www.middlewareinventory.com/blog/sample-web-application-war-file-download/)
 
 ## Documentation
 **TODO***
@@ -111,7 +114,6 @@ Overview
   * Why were certain tools selected?
   * Why you configured the tools as you did? 
   * What is your recommendation for future work if time allows? 
-
 
 ### Plan
 * Put setup and run in README.md

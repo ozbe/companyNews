@@ -2,16 +2,8 @@
 
 ## Prereqs
 * Docker - Tested with `Docker version 20.10.2, build 2291f61`
-* Setup GCP Project [Nice tutorial here](https://cloud.google.com/community/tutorials/getting-started-on-gcp-with-terraform)
-  * Create or choose existing GCP project
-    * Mine is `ozbe-companynews`
-  * Create or choose existing Service Account (SA) with `Project Owner` role
-    * Mine is `terraform@ozbe-companynews.iam.gserviceaccount.com`
-  * Create a SA key (json) and save the key in the project directory as `sa-key.json` (don't worry the filename is in the .gitignore)
-* **TODO** enable [Cloud Resource Manager API](https://console.developers.google.com/apis/api/cloudresourcemanager.googleapis.com/overview?project=524336931530&pli=1)
-* **TODO** warn about google services being update in GCP Project 
-* **TODO** how to setup `tf.vars`
-* **IDEA** Support using local gcloud credentials for ease of setup
+* Setup Google Cloud Project
+* `glcoud` configured to use an account with `Project Owner` permissions to _the_ GCP Project (`project_id`)
 
 ## Development
 
@@ -23,6 +15,22 @@ $ docker run \
   -v `pwd`:/terraform \
   tf
 ```
+
+## Environment tfvars
+
+The steps provided throughout documentation refer to using `training.tfvars` or `production.tfvars`. You will need to create each file. Thankfully `variables.tf` has reasonable defaults, so you only need to set the `project_id` and `env`. 
+* `project_id` should be the GCP project you have for this project.
+* `env` should be `training` or `production`, but can be _any_ value (assuming it meets the naming limitations in the resources it is used with). 
+
+### Training Example
+
+```
+# training.tfvars
+project_id   = "ozbe-companynews-training"
+env          = "training"
+```
+ 
+Now that you've seen an example, go make `training.tfvars` or `production.tfvars`. 
 
 ## Workspaces
 
@@ -73,7 +81,6 @@ $ terraform destroy -var-file=<training|production>.tfvars
 ```
 $ terraform destroy -var-file=training.tfvars
 ```
-
 
 ## References
 * https://github.com/hashicorp/terraform/blob/master/Dockerfile

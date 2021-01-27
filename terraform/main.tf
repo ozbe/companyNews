@@ -33,7 +33,7 @@ module "gke" {
   source = "./modules/gke"
   project_id = var.project_id
   env = var.env
-  zones = var.zones
+  zone = var.zone
 
   gke_num_nodes = var.gke_num_nodes
 
