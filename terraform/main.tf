@@ -23,6 +23,13 @@ data "google_client_config" "default" {
 data "google_project" "project" {
 }
 
+module "network" {
+  source = "./modules/network"
+  region = var.region
+  env = var.env
+  project_name = data.google_project.project.name
+}
+
 module "company_news" {
   count = 0
   source       = "./modules/company_news"

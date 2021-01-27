@@ -1,14 +1,10 @@
-locals {
-  project_name = data.google_project.project.name
-}
-
 resource "google_compute_network" "network" {
-  name                    = "${local.project_name}-network"
+  name                    = "${var.project_name}-network"
   auto_create_subnetworks = "false"
 }
 
 locals {
-  subnet_name_prefix = "${local.project_name}-subnet"
+  subnet_name_prefix = "${var.project_name}-subnet"
 }
 
 resource "google_compute_subnetwork" "subnet" {
