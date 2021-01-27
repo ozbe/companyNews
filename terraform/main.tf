@@ -15,7 +15,8 @@ module "gke" {
   env = terraform.workspace
   zone = var.zone
 
-  gke_num_nodes = var.gke_num_nodes
+  primary_node_count = var.gke_primary_node_count
+  primary_machine_type = var.gke_primary_machine_type
 
   network = module.network.network_name
   subnetwork = module.network.subnetwork_name

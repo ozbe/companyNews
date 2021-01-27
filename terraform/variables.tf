@@ -16,9 +16,16 @@ variable "zone" {
   default = "australia-southeast1-b"
 }
 
-variable gke_num_nodes {
+variable gke_primary_node_count {
   type = number
   default = 1
+}
+
+# This machine type is the bare minimum. Chosen mostly for testing reasons
+# After evaluating the performance of pods, this machine_type may need adjusted
+variable gke_primary_machine_type {
+  type = string
+  default = "n1-standard-1"
 }
 
 variable services {

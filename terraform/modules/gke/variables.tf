@@ -10,9 +10,13 @@ variable zone {
   type = string
 }
 
-variable gke_num_nodes {
+variable primary_node_count {
   type = number
   description = "Number of primary nodes "
+}
+
+variable primary_machine_type {
+  type = string
 }
 
 variable network {

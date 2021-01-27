@@ -22,8 +22,6 @@ resource "google_container_cluster" "gke" {
   network    = var.network
   subnetwork = var.subnetwork
 
-
-
   # VPC-native GCP recommended practice and default for CLI and Console
   ip_allocation_policy {
     cluster_secondary_range_name  = var.pods_secondary_range_name
@@ -35,7 +33,7 @@ resource "google_container_node_pool" "gke_primary" {
   name       = "${google_container_cluster.gke.name}-node-pool"
   location   = local.location
   cluster    = google_container_cluster.gke.name
-  node_count = var.gke_num_nodes
+  node_count = var.primary_node_count
 
   node_config {
     # Scopes for loggin and monitoring
@@ -52,9 +50,7 @@ resource "google_container_node_pool" "gke_primary" {
       env = var.env
     }
 
-    # This machine type is the bare minimum. Chosen mostly for testing reasons
-    # After evaluating the performance of pods, this machine_type may need adjusted
-    machine_type = "n1-standard-1"
+    machine_type = var.primary_machine_type
     tags         = [local.cluster_name]
     metadata = {
       # All that remains of some other security enhancements
