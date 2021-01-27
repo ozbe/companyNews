@@ -1,9 +1,9 @@
 # NOTE - Consider moving this to variables or password provider
-resource "random_password" "tomcat_password" {
+resource "random_password" "web_server" {
   length = 10
 }
 
-resource "helm_release" "war" {
+resource "helm_release" "web_server" {
   name = "company-news"
   repository = "https://charts.bitnami.com/bitnami"
   chart = "tomcat"
@@ -26,7 +26,7 @@ resource "helm_release" "war" {
   # NOTE - Required to apply updates
   set {
     name = "tomcatPassword"
-    value = random_password.tomcat_password.result
+    value = random_password.web_server.result
   }
 
   # NOTE - `app` label used to retrieve pod

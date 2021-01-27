@@ -20,7 +20,7 @@ PREV_WS=$(terraform -chdir=../terraform workspace show)
 terraform -chdir=../terraform workspace select $1
 
 # Get bucket name from terraform
-BUCKET=$(terraform -chdir=../terraform output static_assets_bucket_name)
+BUCKET=$(terraform -chdir=../terraform output company_news_public_bucket_name)
 
 # Restore terraform workspace
 terraform -chdir=../terraform workspace select $PREV_WS

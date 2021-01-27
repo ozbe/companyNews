@@ -23,9 +23,9 @@ data "google_client_config" "default" {
 data "google_project" "project" {
 }
 
-module "static_assets" {
+module "company_news" {
   count = 0
-  source       = "./modules/static-assets"
+  source       = "./modules/company_news"
   project_name = data.google_project.project.name
   env          = var.env
  
