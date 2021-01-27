@@ -1,8 +1,8 @@
 # TODO
 
 Overview
-- [/] [Terraform](#terraform)
-- [ ] [Static Assets](#static-assets)
+- [x] [Terraform](#terraform)
+- [X] [Static Assets](#static-assets)
 - [ ] [WAR](#war)
 - [ ] [Documentation](#documentation)
 
@@ -88,12 +88,12 @@ Overview
 - [Storage options](https://cloud.google.com/compute/docs/disks/)
 
 ### Steps
-* Create GKE
-* Deploy tomact helm to GKE
+- [x] Create GKE
+- [ ] Deploy tomact helm to GKE
   * Provide war and prevaylor path in config
   * Enable ingress
   * Persistent volume
-* Create upload script
+- [ ] Create upload script
 
 ## Documentation
 **TODO***

@@ -20,4 +20,21 @@ gsutil rsync -d -r ./tests/assets/static-assets/ gs://ozbe-companynews-static_as
 ```
 **TODO** get ip:port for `static-assets-url-map` via glcoud
 
+### War
+
+```
+company-news-tomcat-897f447d-n9zm9
+```
+
+## View
+
 **TODO** view assets
+```
+open http://<IP>/SampleWebApp/SnoopServlet
+```
+
+**TODO**
+```
+kubectl get pods -l app=company-news
+kubectl cp ./tests/assets/ company-news-tomcat-75645b7b86-rjmlk:/
+```
