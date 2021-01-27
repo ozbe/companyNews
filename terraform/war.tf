@@ -1,5 +1,6 @@
 # persistent volume (maybe)
 
+# tomcat password
 resource "random_password" "tomcat_password" {
   length = 10
 }
@@ -10,11 +11,6 @@ resource "helm_release" "war" {
   repository = "https://charts.bitnami.com/bitnami"
   chart = "tomcat"
   version = "8.1.1"
-
-  set {
-    name = "ingress.enabled"
-    value = "true"
-  }
 
   set {
     name = "updateStrategy.type"
@@ -39,5 +35,3 @@ resource "helm_release" "war" {
     })
   }
 }
-
-# output pod data and ingress

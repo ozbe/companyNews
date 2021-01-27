@@ -35,6 +35,21 @@ open http://<IP>/SampleWebApp/SnoopServlet
 
 **TODO**
 ```
-kubectl get pods -l app=company-news
-kubectl cp ./tests/assets/ company-news-tomcat-75645b7b86-rjmlk:/
+$ POD=$(kubectl get pod -l app=company-news -o jsonpath="{.items[0].metadata.name}")
+$ kubectl cp ./tests/assets/war/SampleWebApp.war $POD:/app
+```
+
+$ SVC_IP=$(kubectl get svc company-news-tomcat -o jsonpath="{.status.loadBalancer.ingress[0].ip}")
+$ open "http://$SVC_IP/SampleWebApp/"
+
+http://35.201.30.235/SampleWebApp/
+
+```
+/bitnami/tomcat/webapps/
+/opt/bitnami/tomcat/webapps_default
+```
+
+```
+kubectl exec --stdin --tty company-news-tomcat-75645b7b86-rjmlk -- /bin/bash
+/ cd /bitnami/tomcat
 ```
