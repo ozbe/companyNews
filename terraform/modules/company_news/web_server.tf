@@ -34,6 +34,7 @@ resource "helm_release" "web_server" {
     name = "podLabels"
     value = yamlencode({
      "app" = "company-news"
+     "env" = var.env
     })
   }
 }
