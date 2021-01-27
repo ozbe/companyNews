@@ -26,3 +26,12 @@ variable gke_num_nodes {
   type = number
   default = 1
 }
+
+variable services {
+  type = list(string)
+  description = "Project services to manage by terraform"
+  default = [
+    "compute.googleapis.com",
+    "container.googleapis.com"
+  ]
+}
