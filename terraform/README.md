@@ -30,7 +30,7 @@ Thankfully `variables.tf` has reasonable defaults, so you only need to set the `
 
 ```
 # training.tfvars
-project_id   = "ozbe-companynews"
+project_id   = "ozbe-cn-training"
 env          = "training"
 ```
  
