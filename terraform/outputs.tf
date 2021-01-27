@@ -19,6 +19,10 @@ output "gke_name" {
   description = "GKE cluster name"
 }
 
-output "company_news_public_bucket_name" {
-  value = module.company_news.public_bucket_name
+output "company_news_cdn_bucket" {
+  value = module.company_news.cdn_bucket_name
+}
+
+output "company_news_cdn_ip" {
+  value = module.company_news.cdn_ip
 }

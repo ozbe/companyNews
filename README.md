@@ -2,6 +2,8 @@
 
 Progress and planning can be found in [TODO.md](/TODO.md)
 
+Tested on `macOS 11.1 (20C69)`
+
 ## Steps
 1. [GCP Project](/#gcp-project)
 2. [Terraform Setup](/#terraform)
@@ -21,10 +23,12 @@ You may already a project and SA account already, but these directions will assu
 ```
 # Create project
 $ gcloud projects create <PROJECT_ID>
+
 # Set project
 $ gcloud config set project <PROJECT_ID>
+
 # Enable Cloud Resource Manager API
-gcloud services enable "cloudresourcemanager.googleapis.com"
+gcloud services enable cloudresourcemanager.googleapis.com
 ```
 
 ### Create Terraform Service Account (SA)
@@ -32,15 +36,19 @@ gcloud services enable "cloudresourcemanager.googleapis.com"
 ```
 # Create SA
 $ gcloud iam service-accounts create <SA_NAME>  --display-name "Terraform Account"
+
 # Assign SA owner role
 $ gcloud projects add-iam-policy-binding <PROJECT_ID> --member "<SA_NAME:<PROJECT_ID>@someproject.iam.gserviceaccount.com" --role "roles/owner"
+
 # Create and download SA key
-$ gcloud iam service-accounts keys create <SA_KEY>.json \
-  --iam-account <SA_NAME>m@<PROJECT_ID>.iam.gserviceaccount.com
+$ gcloud iam service-accounts keys create <SA_KEY>.json --iam-account <SA_NAME>m@<PROJECT_ID>.iam.gserviceaccount.com
+
 # Activate service account 
 $ gcloud auth activate-service-account --project=<PROJECT_ID> --key-file=<SA_KEY>.json
+
 # Set gcloud account to SA
 $ gcloud config set account gcpcmdline@someproject.iam.gserviceaccount.com
+
 # Login to SA
 $ gcloud auth application-default login --no-launch-browser
 ```
@@ -107,8 +115,10 @@ $ ./scripts/upload_war.sh training ./tests/assets/war/SampleWebApp.war
 ## View
 
 ### View Static Assets
-**TODO** Expose lb ip in output
 
+```
+CDN_IP=$(terraform -chdir=terraform output company_news_cdn_ip | tr -d '"')
+$ open "http://$CDN_IP/index.html"
 
 ### View WAR
 ```
