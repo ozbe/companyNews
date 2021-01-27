@@ -14,11 +14,12 @@ Progress and planning can be found in [TODO.md](/TODO.md)
 ## Copy Assets
 
 ### Static Assets
-**TODO** gsutil setup
+
+After deploying terraform environments
+
 ```
-gsutil rsync -d -r ./tests/assets/static-assets/ gs://ozbe-companynews-static_assets-training/
+$ ./scripts/upload_static_assets.sh <training|production> <PATH_TO_ASSETS_ZIP>
 ```
-**TODO** get ip:port for `static-assets-url-map` via glcoud
 
 ### War
 

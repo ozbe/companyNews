@@ -18,3 +18,7 @@ output "gke_name" {
   value = google_container_cluster.gke.name
   description = "GKE cluster name"
 }
+
+output "static_assets_bucket_name" {
+  value = module.static_assets.bucket_name
+}
