@@ -11,7 +11,7 @@ output "zone" {
 }
 
 output "env" {
-  value = var.env
+  value = terraform.workspace
 }
 
 output "gke_name" {

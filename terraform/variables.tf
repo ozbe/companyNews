@@ -16,11 +16,6 @@ variable "zone" {
   default = "australia-southeast1-b"
 }
 
-variable "env" {
-  type        = string
-  description = "Environment"
-}
-
 variable gke_num_nodes {
   type = number
   default = 1

@@ -1,7 +1,7 @@
 module "network" {
   source = "./modules/network"
   region = var.region
-  env = var.env
+  env = terraform.workspace
   project_name = data.google_project.project.name
 
   depends_on = [
@@ -12,7 +12,7 @@ module "network" {
 module "gke" {
   source = "./modules/gke"
   project_id = var.project_id
-  env = var.env
+  env = terraform.workspace
   zone = var.zone
 
   gke_num_nodes = var.gke_num_nodes
@@ -30,7 +30,7 @@ module "gke" {
 module "company_news" {
   source       = "./modules/company_news"
   project_name = data.google_project.project.name
-  env          = var.env
+  env          = terraform.workspace
  
   depends_on = [
     google_project_service.services,

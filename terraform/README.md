@@ -22,16 +22,14 @@ $ terraform init
 
 The steps provided throughout documentation refer to using `training.tfvars` or `production.tfvars`. You will need to create each file. 
 
-Thankfully `variables.tf` has reasonable defaults, so you only need to set the `project_id` and `env`:
+Thankfully `variables.tf` has reasonable defaults, so you only **need** to set the `project_id`:
 * `project_id` should be the GCP project you have for this project.
-* `env` should be `training` or `production`, but can be _any_ value (assuming it meets the naming limitations in the resources it is used with). 
 
 ### Training Example
 
 ```
 # training.tfvars
 project_id   = "ozbe-cn-training"
-env          = "training"
 ```
  
 Now that you've seen an example, go make `training.tfvars` and/or `production.tfvars`. 
