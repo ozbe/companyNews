@@ -1,8 +1,8 @@
 # TODO
 
 Overview
-- [/] [Terraform](#terraform)
-- [ ] [Static Assets](#static-assets)
+- [x] [Terraform](#terraform)
+- [X] [Static Assets](#static-assets)
 - [ ] [WAR](#war)
 - [ ] [Documentation](#documentation)
 
@@ -54,6 +54,7 @@ Overview
 
 ### Outstanding questions
 1. How do I test w/o a war file?
+  - Found one from [A Sample Java Web Application – War file to Deploy and Test](https://www.middlewareinventory.com/blog/sample-web-application-war-file-download/)
 
 ### Inputs
 * A .war file with the dynamic parts of the application
@@ -88,12 +89,12 @@ Overview
 - [Storage options](https://cloud.google.com/compute/docs/disks/)
 
 ### Steps
-* Create GKE
-* Deploy tomact helm to GKE
+- [x] Create GKE
+- [ ] Deploy tomact helm to GKE
   * Provide war and prevaylor path in config
   * Enable ingress
   * Persistent volume
-* Create upload script
+- [ ] Create upload script
 
 ## Documentation
 **TODO***
