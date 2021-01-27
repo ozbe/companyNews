@@ -10,7 +10,7 @@ variable "region" {
   default = "australia-southeast1"
 }
 
-# This likely should be `list(string)`, but I've kept is a `string` for simplicity
+# This should be `list(string)`, but I've kept is a `string` for simplicity
 variable "zone" {
   type = string
   default = "australia-southeast1-b"

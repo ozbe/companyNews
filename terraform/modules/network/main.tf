@@ -1,3 +1,9 @@
+#
+# Network
+# 
+# GCP network with one subnet configured for GKE
+#
+
 resource "google_compute_network" "network" {
   name                    = "${var.project_name}-network"
   auto_create_subnetworks = "false"
@@ -7,6 +13,10 @@ locals {
   subnet_name_prefix = "${var.project_name}-subnet"
 }
 
+# CIDR ranges provided by Google documentation. 
+# Would want to revaluate ranges after further discussion of what 
+# will be on the network (and GKE) and having a 
+# discussion with a network engineer
 resource "google_compute_subnetwork" "subnet" {
   name          = "${local.subnet_name_prefix}-env"
   region        = var.region

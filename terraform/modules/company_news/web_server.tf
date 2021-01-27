@@ -1,3 +1,9 @@
+#
+# Web Server
+# 
+# Release tomcat to GKE using a pre-existing helm chart https://artifacthub.io/packages/helm/bitnami/tomcat
+#
+
 # NOTE - Consider moving this to variables or password provider
 resource "random_password" "web_server" {
   length = 10

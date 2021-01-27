@@ -1,3 +1,8 @@
+#
+# CDN
+# 
+# Host assets in GCS and serve them via Load balancer, fronted by Cloud CDN
+#
 
 resource "google_storage_bucket" "cdn" {
   name = "${var.project_name}-cdn-${var.env}"

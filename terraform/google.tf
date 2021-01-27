@@ -3,5 +3,6 @@ provider "google" {
   region      = var.region
 }
 
+# Mostly to get project name
 data "google_project" "project" {
 }
