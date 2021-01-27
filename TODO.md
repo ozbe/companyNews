@@ -137,9 +137,12 @@ Overview
 * No HTTPS
 
 ### Improvements
-* Store terraform state in GCS or use TFE
+* Store terraform state in GCS or use TFE https://www.terraform.io/docs/language/settings/backends/gcs.html
+* tfvars in a tool like TFE, Vault, or CI secrets
+* move terraform folder to a separate repo
 * Terraform pre commit fmt
 * Move from prevayler to data storage option appropriate for companyNews use case
+  * currently use a persistent
   * can still support prevayler localy for development by adding an interface to abstract the data storage
   * **TODO** provide decision tree for choosing storage option
   * world wide and sub second response (spanner) or perhaps use cloud sql with memory store
@@ -149,6 +152,14 @@ Overview
   * following deploys
   * versions 
 * Fix non-atomic, Deploy assets to different folders (paths) in a bucket and point to said folder from the newly released 
-* Support HTTPS
-* GKE multi-zone
-* Scaling pods
+* Support HTTPS at the load balancers
+* Update GKE to multi-zone
+* Make GKE private
+  * pros
+    * reduce attach vector
+    * avoid public ips
+  * cons
+    * requires a nat
+    * can complicate accessing nodes
+* Increase Node pool and deployment scaling
+* 

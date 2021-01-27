@@ -24,7 +24,10 @@ You may already a project and SA account already, but these directions will assu
 # Create project
 $ gcloud projects create <PROJECT_ID>
 
-# Enable billing (Get ACCOUNT_ID with `gcloud alpha billing accounts list`)
+# Get billing ACCOUNT_ID
+$ gcloud alpha billing accounts list
+
+# Enable billing
 $ gcloud beta billing projects link <PROJECT_ID> --billing-account=<ACCOUNT_ID>
 
 # Set project
@@ -40,7 +43,10 @@ gcloud services enable cloudresourcemanager.googleapis.com
 # Create project
 $ gcloud projects create ozbe-cn-training
 
-# Enable billing (Get ACCOUNT_ID with `gcloud alpha billing accounts list`)
+# Get billing ACCOUNT_ID
+$ gcloud alpha billing accounts list
+
+# Enable billing 
 $ gcloud alpha billing projects link ozbe-cn-training --billing-account=XXXXXXX
 
 # Set project
@@ -100,9 +106,9 @@ Terraform is used to stand up the GCP Project's infrastructure.
 
 Follow the setup and deploy steps in [Terraform Setup](/terraform/README.md#setup-and-deploy) to setup the `training` envrionment. 
 
-We will talk about [production](#production) later.
+Don't forget to `cd ./terraform` from the project root for the terraform setup!
 
-Don't forget to `cd ./terraform` from the project roor for the terraform setup!
+We will talk about [production](#production) later.
 
 ## kubectl
 
@@ -119,7 +125,7 @@ $ gcloud container clusters get-credentials --zone=$ZONE $GKE_NAME
 ```
 $ terraform -chdir=./terraform workspace select training
 $ GKE_NAME=$(terraform -chdir=./terraform output gke_name | tr -d '"')
-$ REGION=$(terraform -chdir=./terraform output zone | tr -d '"')
+$ ZONE=$(terraform -chdir=./terraform output zone | tr -d '"')
 $ gcloud container clusters get-credentials --zone=$ZONE $GKE_NAME
 ```
 
@@ -137,7 +143,7 @@ Deploy `.zip file with the image and stylesheet used for the application`
 $ ./scripts/upload_static_assets.sh <training|production> <PATH_TO_ASSETS_ZIP>
 ```
 
-### Training example
+#### Training example
 ```
 $ ./scripts/upload_static_assets.sh training ./tests/assets/static-assets/archive.zip
 ```
@@ -150,7 +156,7 @@ Deploy `war file with the dynamic parts of the application`
 $ ./scripts/upload_war.sh <training|production> <PATH_TO_WAR>
 ```
 
-### Training example
+#### Training example
 ```
 $ ./scripts/upload_war.sh training ./tests/assets/war/SampleWebApp.war
 ```
