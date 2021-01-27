@@ -3,27 +3,38 @@
 Progress and planning can be found in [TODO.md](/TODO.md)
 
 ## Steps
-1. [Terraform Setup](/terraform/README.md)
+1. [Terraform Setup](/#terraform)
+2. [Kubernetes](#kubernetes)
 2. [Copy assets](#copy-assets)
+3. [View assets](#view-assets)
 
-## Kubernetes
+### Terraform
 
-**TODO** requires `gcloud config set compute/zone australia-southeast1-b`
-`$ gcloud container clusters get-credentials $(terraform output gke_name)`
+[Terraform Setup](/terraform/README.md)
+
+### Kubernetes
+
+```
+$ terraform -chdir=./terraform workspace select <training|production>
+$ GKE_NAME=$(terraform -chdir=./terraform output gke_name)
+$ REGION=$(terraform -chdir=./terraform output region)
+$ gcloud --region=$REGION container clusters get-credentials $GKE_NAME
+```
 
 ## Copy Assets
 
+Copy assets, after deploying terraform environments and setting up `kubectl`.
+
 ### Static Assets
-**TODO** gsutil setup
+
 ```
-gsutil rsync -d -r ./tests/assets/static-assets/ gs://ozbe-companynews-static_assets-training/
+$ ./scripts/upload_static_assets.sh <training|production> <PATH_TO_ASSETS_ZIP>
 ```
-**TODO** get ip:port for `static-assets-url-map` via glcoud
 
 ### War
 
 ```
-company-news-tomcat-897f447d-n9zm9
+$ ./scripts/upload_war.sh <training|production> <PATH_TO_WAR>
 ```
 
 ## View

@@ -1,6 +1,7 @@
 
 resource "google_storage_bucket" "static_assets" {
   name = "${var.project_name}-static_assets-${var.env}"
+  # Not a best practice, but helpful for a coding challenge
   force_destroy = true
 }
 
