@@ -9,7 +9,8 @@ There isn't much left to do with the static assets resources themselves with reg
 ## Web Server (WAR)
 
 ### Prevaylor
-The largest bottleneck for the web server implementation is prevaylor. By not supporting multiple writers, we are unable to scale horizontally.
+
+The largest bottleneck for the web server implementation is Prevayler. By not supporting multiple writers, we are unable to scale horizontally.
 
 The current implementation uses a persistent disk. This will not work when there is more than one pod, but will not help us meet our fully public requirements.
 
@@ -17,9 +18,9 @@ I would encourage the development team to consider another data storage alternat
 
 My general recommendation for OLTP would be to use CloudSQL (possibly "fronted" by Memorystore) or Firestore, but they may need to consider something like Spanner if they need to deploy in other regions to support their subsecond response requirements.
 
-We can still support prevayler for local development by adding an interface to abstract the data storage and toggle the data storage implementation with a configuration value that could be added to the helm deploy
+We can still support Prevayler for local development by adding an interface to abstract the data storage and toggle the data storage implementation with a configuration value that could be added to the helm deploy
 
-* If they are only reading with prevaylor (which), then this is a non-issue as the data must be in the WAR and we can scale away.
+* If they are only reading with Prevayler (which), then this is a non-issue as the data must be in the WAR and we can scale away.
 
 If they are unable to change their data layer, we may have to consider something like a leader election or a more advanced load balancing solution to try to minimize downtime in the event of a pod failing
 

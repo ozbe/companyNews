@@ -10,27 +10,38 @@ Many explanations are inline with the source and covered below.
 
 ## What end state do you envision (if you run out of time to implement)?
 
-I'll touch on some of potential end states in `What is your recommendation for future work if time allows?`, but I would say that there is a lot of opportunity for management (IAM access control) and security improvements (SA for GKE, SA for writing to bucket, private GKE cluster) based on the company's needs and wants.
+I'll touch on some of potential end states in `What is your recommendation for future work if time allows?`, but I would say that there is a lot of opportunity for management (ex: IAM access control) and security improvements (SA for GKE, SA for writing to bucket, private GKE cluster) based on the company's needs and wants.
 
 ## Why were certain tools selected?
 
 ### Terraform
-Required by challenge and a practice I would have followed anyways.
+
+Required by challenge and a best practice for managing infrastructure.
 
 ### GKE
+
 Relevant to role and enables us to host and scale the WAR web server.
 
 ### Static Assets
+
 * Store static assets in GCS
-  * Why? - Cost, ease, and flexibility
-* Serve static assets via LoadBalancer
-  * Why? - While not `a web server`, this does solve the problem of serving the assets, without the overhead of having to manage a web server
+  * Why?
+    * Cost - As opposed to other storage options
+    * Ease - `gsutil`
+    * Flexibility - flexibility with organization 
+* Serve static assets via LoadBalancer fronted by CDN
+  * Why?
+    * While not `a web server`, this does solve the problem of serving the assets, without the overhead of having to manage a web server
+    * The CDN helps manage the network traffic and delivery assets quicker to customers
 
 ### Web Server
+
 * Run WAR file in tomcat helm
-  * Why - I originally was going to build a Docker image, write a Helm chart, and deploy the WAR asset. However, this helm chart solved the initial problem of hosting the WAR and has been tested by others, so it should prove more reliable
+  * Why
+    * I originally was going to build a Docker image, write a Helm chart, and deploy the WAR asset. However, this helm chart solved the initial problem of hosting the WAR and has been tested by others, so it should prove more reliable
 * Run tomcat on GKE
-  * Why - able to scale and configure load balancer, replication, and persistent volume
+  * Why
+    * Able to scale and configure load balancer, replication, and persistent volume
 * Store WAR on GCE persistent volume
   * Why
     * Persists between deploys
@@ -53,9 +64,10 @@ Many explanations are inline with the source. In short, I configured many of the
 
 ## What is your recommendation for future work if time allows?
 
-I'll break the improvement recommendations into a few high-level categories 
+For organizational purposes, I'll break the improvement recommendations into a few high-level categories.
 
-### Terraform project, itself
+### Terraform project
+
 The terraform project in its current state is prone to errors and potential data loss. A few small improvements could be made to address these:
 1. Store terraform state in [GCS](https://www.terraform.io/docs/language/settings/backends/gcs.html) or use a tool such as TFE. This will allow other developers to manage the terraform environment and help avoid data loss.
 2. The project should have a basic CI to validate branches by at least testing formatting and planning, and deploy to environments
@@ -63,7 +75,8 @@ The terraform project in its current state is prone to errors and potential data
 4. tfvars should be moved to a tool like TFE, Vault, or in CI secrets. They can be included in the source, but we should be mindful that they shouldn't include secrets then.
 
 ### Infrastructure
-(The resources created terraform)
+
+(The resources created with terraform)
 
 * Add IAM support to onboard and manage new users
 * Support HTTPS at the load balancers for increased security
@@ -72,11 +85,11 @@ The terraform project in its current state is prone to errors and potential data
 
 * Use a non-default namespace for companyNews to help mitigate risk of challenges that may arise later if we decide to have a multi-tenancy GKE cluster
 * Make GKE private. This should be a discussion with the stakeholders to understand their tolerance for risk
-  * pros
+  * Pros
     * Reduce attack vector
     * Avoid public ips
-  * cons
-    * Requires a nat (can use Cloud NAT)
+  * Cons
+    * Requires a NAT (can use Cloud NAT)
     * Can complicate accessing nodes
 * More discussed in [Scaling](scaling.md)
 * Adjust subnet and secondary ranges based on projected number of pods and services

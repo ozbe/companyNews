@@ -27,7 +27,7 @@ resource "google_compute_url_map" "cdn" {
   default_service = google_compute_backend_bucket.cdn.self_link
 }
 
-# This would ideally be google_compute_target_http_proxy
+# This would ideally be google_compute_target_https_proxy
 resource "google_compute_target_http_proxy" "cdn" {
   name = "static-assets-target-proxy"
   url_map = google_compute_url_map.cdn.self_link

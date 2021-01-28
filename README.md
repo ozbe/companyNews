@@ -129,6 +129,7 @@ $ gcloud container clusters get-credentials --zone=$ZONE $GKE_NAME
 ```
 
 ### Training example
+
 ```
 $ terraform -chdir=./terraform workspace select training
 $ GKE_NAME=$(terraform -chdir=./terraform output gke_name | tr -d '"')
@@ -164,6 +165,7 @@ $ ./scripts/upload_war.sh <training|production> <PATH_TO_WAR>
 ```
 
 #### Training example
+
 ```
 $ ./scripts/upload_war.sh training ./tests/assets/war/SampleWebApp.war
 ```
@@ -183,6 +185,7 @@ $ ./scripts/view_war.sh
 ```
 
 ## Production
+
 You have a one of two choices for testing Production environment. You can follow all of the directions starting from [GCP Project](#gcp-project), where you setup a new GCP project, *or* you can go through the [Clean up](#clean-up) and then start at the [Terraform](#terraform) setup.
 
 ## Clean up
@@ -211,7 +214,7 @@ $ gcloud config set account <ACCOUNT>
 $ gcloud revoke <SA_ACCOUNT>
 ```
 
-### Training Example
+#### Training Example
 
 ```
 # List accounts
@@ -227,11 +230,13 @@ $ gcloud revoke terraform@ozbe-cn-training.iam.gserviceaccount.com
 ### Delete project
 
 ```
-gcloud projects delete <PROJECT_ID>
+% gcloud projects delete <PROJECT_ID>
 ```
 
+#### Training Example
+
 ```
-gcloud projects delete ozbe-cn-training
+$ gcloud projects delete ozbe-cn-training
 ```
 
 ### Treat yourself

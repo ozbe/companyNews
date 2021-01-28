@@ -8,7 +8,7 @@ Paths on interest on tomcat
 
 Remote into web server
 ```
-$ POD=$(kubectl get pod -l app=company-news -l env=$ENV -o jsonpath="{.items[0].metadata.name}")
+$ POD=$(kubectl get pod -l app=company-news -l env=training -o jsonpath="{.items[0].metadata.name}")
 $ kubectl exec --stdin --tty $POD -- /bin/bash
 /$ cd /app
 ```

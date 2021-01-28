@@ -1,4 +1,4 @@
-# TODO
+# [OBSOLETE] TODO
 
 Overview
 - [/] [Terraform](#terraform)
@@ -154,7 +154,7 @@ Overview
 * Update GKE to multi-zone
 * Make GKE private
   * pros
-    * reduce attach vector
+    * reduce attack vector
     * avoid public ips
   * cons
     * requires a nat
