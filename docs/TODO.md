@@ -7,7 +7,6 @@ Overview
 - [/] [Documentation](#documentation)
 
 ## Terraform
-**TODO**
 
 ### Requirements
 * Infrastructure uses Terraform
@@ -100,7 +99,6 @@ Overview
   - Found one from [A Sample Java Web Application – War file to Deploy and Test](https://www.middlewareinventory.com/blog/sample-web-application-war-file-download/)
 
 ## Documentation
-**TODO***
 
 ### Requirements
 - [/] The ability for us to build your environments, in scripts and/or documentation 
@@ -121,7 +119,7 @@ Overview
   * Why were certain tools selected?
     * Mentioned inline the `TODO.md` and in the source
   * Why you configured the tools as you did? 
-    * **TODO** GKE
+    * GKE
   * What is your recommendation for future work if time allows? 
     * 
 
@@ -137,21 +135,21 @@ Overview
 * No HTTPS
 
 ### Improvements
-* Store terraform state in GCS or use TFE https://www.terraform.io/docs/language/settings/backends/gcs.html
-* tfvars in a tool like TFE, Vault, or CI secrets
-* move terraform folder to a separate repo
-* Terraform pre commit fmt
-* Move from prevayler to data storage option appropriate for companyNews use case
-  * currently use a persistent
+- [x] Store terraform state in GCS or use TFE 
+- [x] tfvars in a tool like TFE, Vault, or CI secrets
+- [x] move terraform folder to a separate repo
+- [x] Terraform pre commit fmt
+- [x] Move from prevayler to data storage option appropriate for companyNews use case
+  * currently use a persistent disk. this will not work when there is more than one pod.
   * can still support prevayler localy for development by adding an interface to abstract the data storage
-  * **TODO** provide decision tree for choosing storage option
+  * provide decision tree for choosing storage option
   * world wide and sub second response (spanner) or perhaps use cloud sql with memory store
   * mention leader election alternative?
-* Containerize war with tomcat, publish to GCR, and deploy helm specific for companyNews
+- [x] Containerize war with tomcat, publish to GCR, and deploy helm specific for companyNews
   * proper health check
   * following deploys
   * versions 
-* Fix non-atomic, Deploy assets to different folders (paths) in a bucket and point to said folder from the newly released 
+- [x] Fix non-atomic, Deploy assets to different folders (paths) in a bucket and point to said folder from the newly released 
 * Support HTTPS at the load balancers
 * Update GKE to multi-zone
 * Make GKE private
@@ -161,5 +159,4 @@ Overview
   * cons
     * requires a nat
     * can complicate accessing nodes
-* Increase Node pool and deployment scaling
-* 
+- [] Increase Node pool and deployment scaling

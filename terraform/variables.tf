@@ -28,6 +28,12 @@ variable gke_primary_machine_type {
   default = "n1-standard-1"
 }
 
+# Change this if app persistence layer supports more than one instance
+variable company_news_web_server_replica_count {
+  type = number
+  default = 1
+}
+
 variable services {
   type = list(string)
   description = "Project services to manage by terraform"

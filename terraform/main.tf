@@ -32,6 +32,8 @@ module "company_news" {
   source       = "./modules/company_news"
   project_name = data.google_project.project.name
   env          = terraform.workspace
+
+  web_server_replica_count = var.company_news_web_server_replica_count
  
   depends_on = [
     google_project_service.services,

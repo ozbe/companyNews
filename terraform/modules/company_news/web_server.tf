@@ -23,6 +23,11 @@ resource "helm_release" "web_server" {
     value = "Recreate"
   }
 
+  set {
+    name = "replicaCount"
+    value = var.web_server_replica_count
+  }
+
   # NOTE - Changed from `300m` because the node pool instances are n1-standard-1
   set {
    name = "resources.requests.cpu"

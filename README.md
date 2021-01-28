@@ -1,8 +1,15 @@
 # companyNews
 
-Progress and planning can be found in [TODO.md](/TODO.md)
+## Requirements
+* Tested on `macOS 11.1 (20C69)`
 
-Tested on `macOS 11.1 (20C69)`
+## Documentation
+* [README](/README.md) (this document) - How to run solution
+* [Approach Taken](/docs/approach-taken.md) - Response to approach taken
+* [Scaling](/docs/scaling.md) - Plan for scaling
+* [Monitoring and Alerting](/docs/monitoring-and-alerting.md) - Plan for monitoring and alerting
+* [Troubleshooting](/docs/troubleshooting.md) - Dumping ground for troubleshooting commands
+* [TODO](/docs/TODO.md) - Progress, planning, notes used throughout solving the problem
 
 ## Steps
 1. [GCP Project](/#gcp-project)

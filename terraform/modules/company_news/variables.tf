@@ -5,3 +5,8 @@ variable project_name {
 variable env {
   type = string
 }
+
+variable web_server_replica_count {
+  type = number
+  description = "Web server replica count"
+}
