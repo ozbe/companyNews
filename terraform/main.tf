@@ -1,7 +1,7 @@
 module "network" {
-  source = "./modules/network"
-  region = var.region
-  env = terraform.workspace
+  source       = "./modules/network"
+  region       = var.region
+  env          = terraform.workspace
   project_name = data.google_project.project.name
 
   depends_on = [
@@ -10,17 +10,17 @@ module "network" {
 }
 
 module "gke" {
-  source = "./modules/gke"
+  source     = "./modules/gke"
   project_id = var.project_id
-  env = terraform.workspace
-  zone = var.zone
+  env        = terraform.workspace
+  zone       = var.zone
 
-  primary_node_count = var.gke_primary_node_count
+  primary_node_count   = var.gke_primary_node_count
   primary_machine_type = var.gke_primary_machine_type
 
-  network = module.network.network_name
-  subnetwork = module.network.subnetwork_name
-  pods_secondary_range_name = module.network.pods_secondary_range_name
+  network                       = module.network.network_name
+  subnetwork                    = module.network.subnetwork_name
+  pods_secondary_range_name     = module.network.pods_secondary_range_name
   services_secondary_range_name = module.network.services_secondary_range_name
 
   depends_on = [
@@ -34,7 +34,7 @@ module "company_news" {
   env          = terraform.workspace
 
   web_server_replica_count = var.company_news_web_server_replica_count
- 
+
   depends_on = [
     google_project_service.services,
   ]
