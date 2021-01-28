@@ -31,10 +31,10 @@ I would recommend the following base alerts, using uptime checks and alerts:
 - Uptime check - alerts if /health endpoint is unavailable more than once in 1m
 - Memory usage - alerts if memory usage is > 50% of limit in a 5m window
 - CPU usage - alerts if memory usage is > 50% of limit in a 5m window
-- Response latency - alerts if mean latency > 1s in a 15 minute period
-- HTTP error rate - alerts if HTTP errors > 25% of all requests in a 10 minute period Alert Policy
+- Response latency - alerts if mean latency > 1s in a 5 minute period
+- HTTP error rate - alerts if HTTP errors > 10% of all requests in a 10 minute period Alert Policy
 
-These alerts should be adjusted as based on usage, tolerance of alerts, and whether action is or can be taken.
+These alerts should be adjusted as based on usage, tolerance of alerts, SLAs, and whether action is or can be taken.
 
 I have not included storage in the monitoring and alerting, as I hope the storage solution would be changed in the short term. 
 
