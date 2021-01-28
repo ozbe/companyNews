@@ -10,7 +10,7 @@
 1. [Environment tfvars](#environment-tfvars)
 2. [Workspaces](#workspaces)
 3. [Plan](#plan)
-4. [Deploy](#deploy)
+4. [Apply](#apply)
 
 ## Terraform init
 

@@ -10,7 +10,7 @@ Many explanations are inline with the source and covered below.
 
 ## What end state do you envision (if you run out of time to implement)?
 
-I'll touch on some of potential end states in [Improvements](#improvements), but I would say that there is a lot of opportunity for management (IAM access control) and security improvements (SA for GKE, SA for writing to bucket, private GKE cluster) based on the company's needs and wants.
+I'll touch on some of potential end states in `What is your recommendation for future work if time allows?`, but I would say that there is a lot of opportunity for management (IAM access control) and security improvements (SA for GKE, SA for writing to bucket, private GKE cluster) based on the company's needs and wants.
 
 ## Why were certain tools selected?
 
@@ -95,7 +95,7 @@ The terraform project in its current state is prone to errors and potential data
   * The WAR could be bundled in a Docker image via the development teams CI (this would require setting up GCR and giving them a SA with write permissions)
   * This would enable rolling updates and roll backs with Kubernetes by tagging images and updating rollout strategy
   * We could potentially slim down and better protect the web server with customizations
-  * I started containerizing an example WAR in [./tests/assets/war/](/tests/assets/war/README.md)
+  * I started containerizing an example WAR in [/tests/assets/war/](/tests/assets/war/README.md)
 * Deployment healthcheck specific to WAR
   * Currently the web server deployment does check the health of the WAR. This could lead to the pod looking healthy, when infact the deployment is broken
 * Move from prevayler to data storage option appropriate for companyNews use case
