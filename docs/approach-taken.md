@@ -91,7 +91,8 @@ The terraform project in its current state is prone to errors and potential data
 
 ### Web Server
 
-* Containerize (Docker iamge) WAR with tomcat, publish to GCR, and deploy helm specific for companyNews
+* Containerize (Docker image) WAR with tomcat, publish to GCR, and deploy helm specific for companyNews
+  * Deploying an asset via `kubectl cp` is a terrible practice
   * The WAR could be bundled in a Docker image via the development teams CI (this would require setting up GCR and giving them a SA with write permissions)
   * This would enable rolling updates and roll backs with Kubernetes by tagging images and updating rollout strategy
   * We could potentially slim down and better protect the web server with customizations
