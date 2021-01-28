@@ -1,5 +1,7 @@
 # WAR
 
+Test `SampleWebApp.war` locally with Docker. This Dockerfile would be used to seed creating a tagged image for each `.war` provided by a developer. The Dockerfile could then be deployed to GCR and the relevant `Deployment` could be updated with the with the latest tag.
+
 ## Test SampleWebApp with Docker
 
 ```

@@ -1,33 +1,39 @@
-provider "google" {
-  credentials = file("sa-key.json")
-  project     = var.project_id
-  region      = var.region
-}
-
-provider "kubernetes" {
-  load_config_file       = false
-  host                   = "https://${module.gke.endpoint}"
-  token                  = data.google_client_config.default.access_token
-  cluster_ca_certificate = base64decode(module.gke.ca_certificate)
-}
-
-provider "helm" {
-  kubernetes {
-    config_path = "~/.kube/config"
-  }
-}
-
-data "google_client_config" "default" {
-}
-
-data "google_project" "project" {
-}
-
-module "static_assets" {
-  count = 0
-  source       = "./modules/static-assets"
+module "network" {
+  source = "./modules/network"
+  region = var.region
+  env = terraform.workspace
   project_name = data.google_project.project.name
-  env          = var.env
+
+  depends_on = [
+    google_project_service.services,
+  ]
+}
+
+module "gke" {
+  source = "./modules/gke"
+  project_id = var.project_id
+  env = terraform.workspace
+  zone = var.zone
+
+  primary_node_count = var.gke_primary_node_count
+  primary_machine_type = var.gke_primary_machine_type
+
+  network = module.network.network_name
+  subnetwork = module.network.subnetwork_name
+  pods_secondary_range_name = module.network.pods_secondary_range_name
+  services_secondary_range_name = module.network.services_secondary_range_name
+
+  depends_on = [
+    google_project_service.services,
+  ]
+}
+
+module "company_news" {
+  source       = "./modules/company_news"
+  project_name = data.google_project.project.name
+  env          = terraform.workspace
+
+  web_server_replica_count = var.company_news_web_server_replica_count
  
   depends_on = [
     google_project_service.services,
