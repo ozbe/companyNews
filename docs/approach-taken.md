@@ -24,6 +24,8 @@ Relevant to role and enables us to host and scale the WAR web server.
 
 ### Static Assets
 
+![Static Assets Diagram](./images/static_assets.png)
+
 * Store static assets in GCS
   * Why?
     * Cost - As opposed to other storage options
@@ -35,6 +37,9 @@ Relevant to role and enables us to host and scale the WAR web server.
     * The CDN helps manage the network traffic and delivery assets quicker to customers
 
 ### Web Server
+
+![Web Server Diagram](./images/web_server.png)
+*Grossly over simplified and not extensive*
 
 * Run WAR file in tomcat helm
   * Why
@@ -69,10 +74,11 @@ For organizational purposes, I'll break the improvement recommendations into a f
 ### Terraform project
 
 The terraform project in its current state is prone to errors and potential data loss. A few small improvements could be made to address these:
-1. Store terraform state in [GCS](https://www.terraform.io/docs/language/settings/backends/gcs.html) or use a tool such as TFE. This will allow other developers to manage the terraform environment and help avoid data loss.
-2. The project should have a basic CI to validate branches by at least testing formatting and planning, and deploy to environments
-3. The `./terraform` should likely be in its own repo and at the root of the project
-4. tfvars should be moved to a tool like TFE, Vault, or in CI secrets. They can be included in the source, but we should be mindful that they shouldn't include secrets then.
+* Store terraform state in [GCS](https://www.terraform.io/docs/language/settings/backends/gcs.html) or use a tool such as TFE. This will allow other developers to manage the terraform environment and help avoid data loss.
+* The project should have a basic CI to validate branches by at least testing formatting and planning, and deploy to environments
+* The `./terraform` should likely be in its own repo and at the root of the project
+* tfvars should be moved to a tool like TFE, Vault, or in CI secrets. They can be included in the source, but we should be mindful that they shouldn't include secrets then.
+* `description`s for all output and variables
 
 ### Infrastructure
 
@@ -101,6 +107,7 @@ The terraform project in its current state is prone to errors and potential data
 * Review caching behavior with the development team. We don't want assets not being updated on clients deviced because the cache is misconfigured
 * Create Service Account with write permissions to CDN bucket. A key for this SA could be given to the devleopment team, so they could deploy the assets from their CI
 * The asset and web server deploy is not an atomic operation. We could deploy assets to different paths in a bucket and point to said paths from the newly released web server
+* Use Cloud DNS to resolve IP
 
 ### Web Server
 
@@ -114,3 +121,4 @@ The terraform project in its current state is prone to errors and potential data
   * Currently the web server deployment does check the health of the WAR. This could lead to the pod looking healthy, when infact the deployment is broken
 * Move from prevayler to data storage option appropriate for companyNews use case
   * Discussed in [Scaling](./scaling.md)
+  * Use Cloud DNS to resolve IP
