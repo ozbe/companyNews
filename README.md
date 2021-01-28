@@ -12,8 +12,8 @@
 * [TODO](/docs/TODO.md) - Progress, planning, notes used throughout solving the problem
 
 ## Steps
-1. [GCP Project](/#gcp-project)
-2. [Terraform Setup](/#terraform)
+1. [GCP Project](#gcp-project)
+2. [Terraform Setup](#terraform)
 3. [kubectl](#kubectl)
 4. [Deploy Developer Assets](#deploy-developer-assets)
 5. [View assets](#view-assets)
